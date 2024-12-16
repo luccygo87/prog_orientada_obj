@@ -1,53 +1,98 @@
-# Programación Tradicional
+# Ejemplo de Técnicas de Programación
 
-def ingresar_temperaturas():
-    temperaturas = []
-    for i in range(7):
-        temperatura = float(input(f"Ingrese la temperatura del día {i+1}: "))
-        temperaturas.append(temperatura)
-    return temperaturas
+# 1. Abstracción
+from abc import ABC, abstractmethod
 
-def calcular_promedio(temperaturas):
-    promedio = sum(temperaturas) / len(temperaturas)
-    return promedio
+class Vehiculo(ABC):
+    @abstractmethod
+    def conducir(self):
+        pass
 
-def main_tradicional():
-    temperaturas = ingresar_temperaturas()
-    promedio = calcular_promedio(temperaturas)
-    print(f"El promedio semanal de temperatura (método tradicional) es: {promedio:.2f}")
+class Coche(Vehiculo):
+    def conducir(self):
+        return "Conduciendo un coche."
 
-# Programación Orientada a Objetos (POO)
+class Bicicleta(Vehiculo):
+    def conducir(self):
+        return "Conduciendo una bicicleta."
 
-class Clima:
-    def __init__(self):
-        self.temperaturas = []
 
-    def ingresar_temperatura(self, temperatura):
-        self.temperaturas.append(temperatura)
+# 2. Encapsulación
+class CuentaBancaria:
+    def __init__(self, titular, saldo=0):
+        self.__titular = titular
+        self.__saldo = saldo
 
-    def calcular_promedio(self):
-        return sum(self.temperaturas) / len(self.temperaturas)
+    def depositar(self, cantidad):
+        self.__saldo += cantidad
 
-def main_poo():
-    clima = Clima()
-    for i in range(7):
-        temperatura = float(input(f"Ingrese la temperatura del día {i+1}: "))
-        clima.ingresar_temperatura(temperatura)
-    promedio = clima.calcular_promedio()
-    print(f"El promedio semanal de temperatura (método POO) es: {promedio:.2f}")
+    def retirar(self, cantidad):
+        if cantidad <= self.__saldo:
+            self.__saldo -= cantidad
+        else:
+            print("Fondos insuficientes.")
 
-# Menú principal
-def main():
-    print("Menú principal:")
-    print("1. Calcular promedio semanal de temperatura (método tradicional)")
-    print("2. Calcular promedio semanal de temperatura (método POO)")
-    opcion = int(input("Ingrese su opción: "))
-    if opcion == 1:
-        main_tradicional()
-    elif opcion == 2:
-        main_poo()
-    else:
-        print("Opción inválida")
+    def obtener_saldo(self):
+        return self.__saldo
 
+
+# 3. Herencia
+class Animal:
+    def hacer_sonido(self):
+        pass
+
+class Gato(Animal):
+    def hacer_sonido(self):
+        return "Miau"
+
+class Perro(Animal):
+    def hacer_sonido(self):
+        return "Guau"
+
+
+# 4. Polimorfismo
+class Forma:
+    def area(self):
+        pass
+
+class Circulo(Forma):
+    def __init__(self, radio):
+        self.radio = radio
+
+    def area(self):
+        return 3.14 * (self.radio ** 2)
+
+class Cuadrado(Forma):
+    def __init__(self, lado):
+        self.lado = lado
+
+    def area(self):
+        return self.lado ** 2
+
+
+# Ejemplo de uso
 if __name__ == "__main__":
-    main()
+    # Abstracción
+    coche = Coche()
+    bicicleta = Bicicleta()
+    print(coche.conducir())
+    print(bicicleta.conducir())
+
+    # Encapsulación
+    cuenta = CuentaBancaria("Juan")
+    cuenta.depositar(100)
+    print(cuenta.obtener_saldo())
+    cuenta.retirar(50)
+    print(cuenta.obtener_saldo())
+
+    # Herencia
+    gato = Gato()
+    perro = Perro()
+    print(gato.hacer_sonido())
+    print(perro.hacer_sonido())
+
+    # Polimorfismo
+    circulo = Circulo(5)
+    cuadrado = Cuadrado(4)
+    print("Área del círculo:", circulo.area())
+    print("Área del cuadrado:", cuadrado.area())
