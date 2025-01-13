@@ -31,11 +31,11 @@ def calcular_perimetro(largo: float, ancho: float) -> float:
 
 
 def main():
-    # Solicita al usuario los datos necesarios para calcular área y perímetro
+# Solicita al usuario los datos necesarios para calcular área y perímetro
     largo = float(input("Ingrese el largo del rectángulo: "))
     ancho = float(input("Ingrese el ancho del rectángulo: "))
 
-    # Calcula y muestra resultados utilizando funciones definidas arriba
+# Calcula y muestra resultados utilizando funciones definidas arriba
     area = calcular_area(largo, ancho)
     perimetro = calcular_perimetro(largo, ancho)
 
