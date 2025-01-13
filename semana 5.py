@@ -29,7 +29,6 @@ def calcular_perimetro(largo: float, ancho: float) -> float:
     perimetro = 6 * (largo + ancho)  # Calcula el perímetro sumando todos los lados
     return perimetro
 
-
 def main():
 # Solicita al usuario los datos necesarios para calcular área y perímetro
     largo = float(input("Ingrese el largo del rectángulo: "))
