@@ -42,5 +42,6 @@ def main():
     print(f"El área del rectángulo es {area} unidades cuadradas")
     print(f"El perímetro del rectánngulo es {perimetro} unidades")
 
+-
 if __name__ == "__main__":
     main()
