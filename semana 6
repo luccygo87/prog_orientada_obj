@@ -1,0 +1,54 @@
+# Definición de la clase Vehiculo
+class Vehiculo:
+    def __init__(self, marca, modelo, año):
+        self._marca = marca
+        self._modelo = modelo
+        self._año = año
+
+    def arrancar(self):
+        print("El vehículo ha arrancado")
+
+    def acelerar(self):
+        print("El vehículo está acelerando")
+
+    def get_marca(self):
+        return self._marca
+
+    def set_marca(self, nueva_marca):
+        self._marca = nueva_marca
+
+    def __str__(self):
+        return f"{self._marca} {self._modelo} {self._año}"
+
+
+# Definición de la clase CocheDeportivo que hereda de Vehiculo
+class CocheDeportivo(Vehiculo):
+    def __init__(self, marca, modelo, año, velocidad_maxima):
+        super().__init__(marca, modelo, año)
+        self.velocidad_maxima = velocidad_maxima
+
+    def imprimir_velocidad_maxima(self):
+        print(f"La velocidad máxima del coche es {self.velocidad_maxima} km/h")
+
+    def __str__(self):
+        return f"{super().__str__()} - Velocidad máxima: {self.velocidad_maxima} km/h"
+
+
+# Creación de objetos
+mi_coche = Vehiculo("Toyota", "Corolla", 2015)
+mi_coche_deportivo = CocheDeportivo("Ferrari", "488 GTB", 2020, 320)
+
+# Uso de métodos y atributos
+print(mi_coche)
+mi_coche.arrancar()
+mi_coche.acelerar()
+
+print(mi_coche_deportivo)
+mi_coche_deportivo.arrancar()
+mi_coche_deportivo.acelerar()
+mi_coche_deportivo.imprimir_velocidad_maxima()
+
+# Uso de encapsulación
+print(mi_coche.get_marca())
+mi_coche.set_marca("Honda")
+print(mi_coche.get_marca())
