@@ -1,6 +1,6 @@
 # Definición de la clase Vehiculo
 class Vehiculo:
-    def __init__(self, marca, modelo, año):
+  def __init__(self, marca, modelo, año):
         self._marca = marca
         self._modelo = modelo
         self._año = año
