@@ -1,0 +1,105 @@
+class Producto:
+    def __init__(self, id, nombre, cantidad, precio):
+        self.id = id
+        self.nombre = nombre
+        self.cantidad = cantidad
+        self.precio = precio
+
+    # Getters
+    def get_id(self):
+        return self.id
+
+    def get_nombre(self):
+        return self.nombre
+
+    def get_cantidad(self):
+        return self.cantidad
+
+    def get_precio(self):
+        return self.precio
+
+    # Setters
+    def set_nombre(self, nombre):
+        self.nombre = nombre
+
+    def set_cantidad(self, cantidad):
+        self.cantidad = cantidad
+
+    def set_precio(self, precio):
+        self.precio = precio
+
+
+class Inventario:
+    def __init__(self):
+        self.productos = []
+
+    # Añadir nuevo producto
+    def add_producto(self, producto_nuevo):
+        for producto in self.productos:
+            if producto.get_id() == producto_nuevo.get_id():
+                print("El ID del producto ya existe.")
+                return False  # No se añadió el producto
+        else:
+            self.productos.append(producto_nuevo)
+            print("Producto añadido correctamente.")
+            return True  # Se añadió el producto
+
+    # Eliminar producto por ID
+    def remove_producto_by_id(self, id_eliminar):
+        for i, produto in enumerate(self.productos):
+            if produto.get_id() == id_eliminar:
+                del self.productos[i]
+                print("Se elimino correctamente")
+                return True  # Se eliminó el producto
+                break  # rompemos ciclo una vez encontrado y eliminado.
+
+
+# Actualizar cantidad o precio de un producto por ID
+
+# Buscar productos(s)por nombre
+
+def search_product_by_name(nombre_buscar, inventario):
+    products_encontrados = [product for product in inventario.productos if
+                            product.get_nombre().lower().find(nombre_buscar.lower()) != -1]
+    return products_encontrados
+
+
+# Interfaz de usuario en la consola
+
+def prompt():
+    pass
+
+
+def interfaz_de_usuario_consola(switch=None):
+    while True:
+
+        prompt()
+        inventario = Inventario()
+
+        if switch == '1':
+            try:
+                agregar_nuevo_producto = Producto(
+                    input('Escribe tu Id'),
+                    input('ingresa tu descripción'),
+                    int(input('coloca tu valor')),
+                    float(input('colocalotuprecio'))
+                )
+
+                inventario.add_producto(agregar_nuevo_producto)
+
+            except Exception as e:
+                print(e)
+
+        elif switch == '2':
+            try:
+                inventario.remove_producto_by_id(
+                    input('Elimina este elemento')
+
+                )
+            except Exception as e:
+                print(e)
+
+        elif switch == '3':
+            pass
+
+interfaz_de_usuario_consola()
