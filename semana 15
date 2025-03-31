@@ -1,0 +1,24 @@
+        self.root = robot
+        self.root.title("Gestor de Tareas")
+
+        
+        self.task_entry = tk.Entry(root, width=40)
+        self.task_entry.grid(row=0, column=0, columnspan=3, padx=10, pady=10)
+        self.task_entry.bind('<Return>', self.add_task)  
+
+        
+        self.add_button = tk.Button(root, text="Añadir Tarea", command=self.add_task)
+        self.add_button.grid(row=1, column=0, padx=10, pady=10)
+
+        self.complete_button = tk.Button(root, text="Marcar como Completada", command=self.complete_task)
+        self.complete_button.grid(row=1, column=1, padx=10, pady=10)
+
+        self.delete_button = tk.Button(root, text="Eliminar Tarea", command=self.delete_task)
+        self.delete_button.grid(row=1, column=2, padx=10, pady=10)
+
+        
+        self.tasks_list = tk.Listbox(root, width=50, height=15)
+        self.tasks_list.grid(row=2, column=0, columnspan=3, padx=10, pady=10)
+        self.tasks_list.bind('<Double-Button-1>', self.complete_task)  
+
+        self.tasks = []
